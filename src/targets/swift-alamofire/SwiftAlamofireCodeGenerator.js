@@ -226,7 +226,7 @@ exports.metadata = () => {
   return {
     name: "Swift Generator",
     fileExtension: "swift",
-    title: "Swift (Alamofire)",
+    title: "Swift (Alamofire 4)",
     mime: "swift",
     identifier: "com.proxyman.plugin.SwiftAlamofireGenerator",
     author: "Paw and Proxyman",

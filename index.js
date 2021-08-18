@@ -11,8 +11,8 @@ const body = {
 }
 
 var request = {
-  name: "Swift Generator",
-  method: "GET",
+  name: "Swift Alamofire 4",
+  method: "POST",
   url: "https://proxyman.io/get?data=123",
   headers: {
     "Host": "proxyman.io",
