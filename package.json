@@ -16,6 +16,7 @@
   "homepage": "https://proxyman.io",
   "license": "MIT",
   "dependencies": {
+    "URIjs": "^1.16.1",
     "httpsnippet": "^1.25.0",
     "mustache": "^4.2.0"
   },

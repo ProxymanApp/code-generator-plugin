@@ -20,5 +20,19 @@ var onRun = (request) => {
   console.log(result);
 }
 
-var request = {}
+const body = {
+  "Name": "Proxyman",
+  "Country": "Singapore"
+}
+
+var request = {
+  name: "Swift Generator",
+  method: "GET",
+  url: "https://proxyman.io/get?data=123",
+  headers: {
+    "Host": "proxyman.io",
+    "Content-Type": "application/json"
+  },
+  jsonBody: body
+}
 onRun(request);
