@@ -1,25 +1,10 @@
-// var HTTPSnippet = require("httpsnippet");
-
-// var onRun = function (method, url) {
-//   var snippet = new HTTPSnippet({
-//     method: method,
-//     url: url
-//   });
-//   return snippet.convert("swift");
-// };
-
-// global.onRun = onRun;
-
-// Use Paw extension
-
 const CodeGenerator = require("./src/code-generator");
 
-var onRun = (request) => {
+const onRun = (request, target) => {
+  return CodeGenerator.convert(request, target);
+};
 
-  const result = CodeGenerator.convert(request, "swift")
-  console.log(result);
-}
-
+// Testing
 const body = {
   "Name": "Proxyman",
   "Country": "Singapore"
@@ -35,4 +20,7 @@ var request = {
   },
   jsonBody: body
 }
-onRun(request);
+console.log(onRun(request, "swift-alamofire"));
+
+// Export to JavascriptCore
+// global.onRun = onRun;

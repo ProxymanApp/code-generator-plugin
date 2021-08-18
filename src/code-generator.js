@@ -1,6 +1,10 @@
-const SwiftAlamofireCodeGenerator = require("./targets/SwiftAlamofireCodeGenerator");
+const SwiftAlamofireCodeGenerator = require("./targets/swift-alamofire/SwiftAlamofireCodeGenerator");
 
 exports.convert = (request, target) => {
-  console.log(SwiftAlamofireCodeGenerator.generate(request))
-  return "Hi"
-}
+  switch (target) {
+    case "swift-alamofire":
+      return SwiftAlamofireCodeGenerator.generate(request);
+    default:
+      return `Unknow target ${target}`;
+  }
+};
