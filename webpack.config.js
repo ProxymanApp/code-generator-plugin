@@ -6,7 +6,7 @@ const config = {
     	path: path.resolve(__dirname, 'dist'),
     	filename: './code-gen.js'
     },
-    mode: 'production'
+    mode: 'production',
 };
 
 module.exports = config;

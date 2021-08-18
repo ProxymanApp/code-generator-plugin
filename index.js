@@ -1,11 +1,26 @@
-var HTTPSnippet = require("httpsnippet");
+const CodeGenerator = require("./src/code-generator");
 
-var onRun = function (method, url) {
-  var snippet = new HTTPSnippet({
-    method: method,
-    url: url
-  });
-  return snippet.convert("swift");
+const onRun = (request, target) => {
+  return CodeGenerator.convert(request, target);
 };
 
-global.onRun = onRun;
+// Testing
+const body = {
+  "Name": "Proxyman",
+  "Country": "Singapore"
+}
+
+var request = {
+  name: "Swift Alamofire 4",
+  method: "POST",
+  url: "https://proxyman.io/get?data=123",
+  headers: {
+    "Host": "proxyman.io",
+    "Content-Type": "application/json"
+  },
+  jsonBody: body
+}
+console.log(onRun(request, "swift-alamofire"));
+
+// Export to JavascriptCore
+// global.onRun = onRun;

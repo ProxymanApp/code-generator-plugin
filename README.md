@@ -8,3 +8,8 @@ Execute the following code in Terminal
 $ npm install
 $ npm run build
 ```
+
+## Credit
+- [Paw-SwiftAlamofireCodeGenerator](https://github.com/luckymarmot/Paw-SwiftAlamofireCodeGenerator)
+- [Mustache](https://github.com/janl/mustache.js/)
+- [URI](http://medialize.github.io/URI.js/)
