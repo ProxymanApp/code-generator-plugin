@@ -202,15 +202,17 @@ const json_body_object = function (object, indent) {
 exports.generate = function (request) {
   var method, view;
   method = request.method.toUpperCase();
+  const url = urlTransform(request);
   view = {
     request: request,
     method: method.toLowerCase(),
-    url: urlTransform(request),
+    url: url,
     headers: headersTransform(request),
     body: bodyTransform(request),
     timeout: request.timeout ? request.timeout / 1000 : null,
-    codeSlug: slugify(request.name),
     httpBasicAuth: request.httpBasicAuth,
+    headline: `${method.toUpperCase()} ${url.base}`,
+    version: metadata.version
   };
 
   if (
@@ -219,27 +221,24 @@ exports.generate = function (request) {
   ) {
     view["has_params_to_encode"] = true;
   }
-  return Mustache.render(template, view);
+  return Mustache.render(codeTemplate, view);
 };
 
-exports.metadata = () => {
-  return {
-    name: "Swift Generator",
-    fileExtension: "swift",
-    title: "Swift (Alamofire 4)",
-    mime: "swift",
-    identifier: "com.proxyman.plugin.SwiftAlamofireGenerator",
-    author: "Paw and Proxyman",
-  };
+const metadata = {
+  name: "Swift Alamofire",
+  fileExtension: "swift",
+  identifier: "com.proxyman.plugin.SwiftAlamofireGenerator",
+  author: "Paw and Proxyman",
+  version: "1.0.0"
 };
 
 // Inlcude a template because we could not build require("fs") in webpack
 
-const template = 
-`func send{{{codeSlug}}}Request() {
+const codeTemplate = 
+`func sendRequest() {
   /**
-   {{{request.name}}}
-   {{{method}}} {{{url.base}}}
+   Proxyman Code Generator ({{{version}}}): Swift + Alamofire 4
+   {{{headline}}}
    */
 
   {{! ----- Timeout ----- }}

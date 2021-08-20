@@ -1,4 +1,5 @@
-const SwiftAlamofireCodeGenerator = require("./targets/swift-alamofire/SwiftAlamofireCodeGenerator");
+const SwiftAlamofireCodeGenerator = require("./targets/SwiftAlamofireCodeGenerator");
+const SwiftNSURLSessionGenerator = require("./targets/SwiftNSURLSessionCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -37,6 +38,8 @@ exports.convert = (request, target) => {
   switch (target) {
     case "swift-alamofire":
       return SwiftAlamofireCodeGenerator.generate(request);
+    case "swift-urlsession":
+      return SwiftNSURLSessionGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }
