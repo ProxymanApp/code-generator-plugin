@@ -235,8 +235,8 @@ exports.metadata = () => {
 
 // Inlcude a template because we could not build require("fs") in webpack
 
-const template = `
-func send{{{codeSlug}}}Request() {
+const template = 
+`func send{{{codeSlug}}}Request() {
   /**
    {{{request.name}}}
    {{{method}}} {{{url.base}}}
@@ -255,7 +255,7 @@ func send{{{codeSlug}}}Request() {
   // Add Headers
   let headers = [
   {{#headers.header_list}}
-      "{{{header_name}}}":"{{{header_value}}}",
+      "{{{header_name}}}": "{{{header_value}}}",
   {{/headers.header_list}}
   ]
 
@@ -265,7 +265,7 @@ func send{{{codeSlug}}}Request() {
   // Add URL parameters
   let urlParams = [
   {{#url.params}}
-      "{{{name}}}":"{{{value}}}",
+      "{{{name}}}": "{{{value}}}",
   {{/url.params}}
   ]
 
@@ -275,7 +275,7 @@ func send{{{codeSlug}}}Request() {
   // Form URL-Encoded Body
   let body = [
   {{#body.url_encoded_body}}
-      "{{{name}}}":"{{{value}}}",
+      "{{{name}}}": "{{{value}}}",
   {{/body.url_encoded_body}}
   ]
 
