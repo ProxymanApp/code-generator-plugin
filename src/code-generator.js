@@ -1,5 +1,6 @@
 const SwiftAlamofireCodeGenerator = require("./targets/SwiftAlamofireCodeGenerator");
 const SwiftNSURLSessionGenerator = require("./targets/SwiftNSURLSessionCodeGenerator");
+const SwiftMoyaCodeGenerator = require("./targets/SwiftMoyaCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -40,6 +41,8 @@ exports.convert = (request, target) => {
       return SwiftAlamofireCodeGenerator.generate(request);
     case "swift-urlsession":
       return SwiftNSURLSessionGenerator.generate(request);
+    case "swift-moya":
+      return SwiftMoyaCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }

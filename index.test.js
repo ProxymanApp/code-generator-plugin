@@ -172,3 +172,61 @@ test("Swift URLSession should work", () => {
   }`;
   expectEqualWithoutFormat(expected, output);
 });
+
+test("Swift Moya should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "swift-moya");
+  let expected = `import Moya
+    
+  /**
+   Proxyman Code Generator (1.0.0): Swift + Alamofire 4
+   POST proxyman.io
+   */
+  
+  public enum API {
+      case makeRequest(data: Int)
+  }
+  
+  extension API: TargetType {
+  
+      public var baseURL: URL { return URL(string: "https://proxyman.io")! }
+  
+      public var path: String {
+          switch self {
+          case .makeRequest:
+              return "/get"
+          }
+      }
+  
+      public var method: Moya.Method {
+          switch self {
+          case .makeRequest:
+              return .post
+          }
+      }
+  
+      public var task: Task {
+          switch self {
+          case .makeRequest(let data):
+              return .requestParameters(parameters: ["data": data], encoding: URLEncoding.default)
+          case .makeRequest(let Name, let Country):
+              return .requestParameters(parameters: ["Name": Name, "Country": Country], encoding: URLEncoding.default)
+          }
+      }
+  
+      public var headers: [String: String]? {
+          return ["Host" : "proxyman.io", 
+                  "Content-Type" : "application/json", 
+                  "Content-Length" : "123", 
+                  "Acceptance" : "json"]
+      }
+  
+      public var sampleData: Data {
+          switch self {
+          case .makeRequest:
+              return "{}".data(using: String.Encoding.utf8)!
+          }
+      }
+  }`;
+  expectEqualWithoutFormat(expected, output);
+});

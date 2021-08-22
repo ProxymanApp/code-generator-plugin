@@ -6,18 +6,6 @@ const addslashes = function (str) {
   return ("" + str).replace(/[\\"]/g, "\\$&").replace(/[\n\r\f]/gm, "\\n");
 };
 
-const slugify = function (str) {
-  var l, m, re;
-  re = /([a-zA-Z0-9])([a-zA-Z0-9]*)/g;
-  l = [];
-  while ((m = re.exec(str))) {
-    if (m) {
-      l.push(m[1].toUpperCase() + m[2].toLowerCase());
-    }
-  }
-  return l.join("");
-};
-
 const urlTransform = function (request) {
   var name, url_params, url_params_object, value;
   url_params_object = (function () {
