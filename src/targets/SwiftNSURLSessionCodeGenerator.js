@@ -163,7 +163,7 @@ const json_body_object = function (object, indent = 0) {
 };
 
 exports.generate = function (request) {
-  var template, view;
+  var view;
   const url = urlTransform(request);
   view = {
     request: request,

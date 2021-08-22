@@ -409,3 +409,46 @@ test("Go should work", () => {
   }`;
   expectEqualWithoutFormat(expected, output);
 });
+
+test("Java HTTP Apache Fluent should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "java");
+  let expected = `import java.io.IOException;
+  import org.apache.http.client.fluent.*;
+  import org.apache.http.entity.ContentType;
+  
+  public class SendRequest
+  {
+    public static void main(String[] args) {
+      sendRequest();
+    }
+    
+    private static void sendRequest() {
+      
+      //  (POST )
+      
+      try {
+        
+        // Create request
+        Content content = Request.Post("https://proxyman.io/get?data=123")
+        
+        // Add headers
+        .addHeader("Host", "proxyman.io")
+        .addHeader("Content-Type", "application/json")
+        .addHeader("Content-Length", "123")
+        .addHeader("Acceptance", "json")
+        
+        // Add body
+        .bodyString("{\\"Name\\": \\"Proxyman\\",\\"Country\\": \\"Singapore\\"}", ContentType.APPLICATION_JSON)
+        
+        // Fetch request and return content
+        .execute().returnContent();
+        
+        // Print content
+        System.out.println(content);
+      }
+      catch (IOException e) { System.out.println(e); }
+    }
+  }`;
+  expectEqualWithoutFormat(expected, output);
+});

@@ -5,6 +5,7 @@ const ObjectiveCNSURLSession = require("./targets/ObjCNSURLConnectionCodeGenerat
 const AxiosCodeGenerator = require("./targets/AxiosCodeGenerator");
 const HTTPieCodeGenerator = require("./targets/HTTPieCodeGenerator");
 const GoHTTPCodeGenerator = require("./targets/GoHTTPCodeGenerator");
+const JavaApacheHTTPClientFluentAPICodeGenerator = require("./targets/JavaApacheHttpClientFluentAPICodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -55,6 +56,8 @@ exports.convert = (request, target) => {
       return HTTPieCodeGenerator.generate(request);
     case "go":
       return GoHTTPCodeGenerator.generate(request);
+    case "java":
+      return JavaApacheHTTPClientFluentAPICodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }
