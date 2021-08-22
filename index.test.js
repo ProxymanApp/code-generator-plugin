@@ -230,3 +230,81 @@ test("Swift Moya should work", () => {
   }`;
   expectEqualWithoutFormat(expected, output);
 });
+
+test("ObjC NSURLSession should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "objc-nsurlsession");
+  let expected = `/**
+  Proxyman Code Generator (1.0.0): Objective-C NSURLSession
+  POST https://proxyman.io/get
+*/
+
+NSURL* URL = [NSURL URLWithString:@"https://proxyman.io/get"];
+NSDictionary* URLParams = @{
+    @"data": @"123",
+};
+URL = NSURLByAppendingQueryParameters(URL, URLParams);
+NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:URL];
+request.HTTPMethod = @"POST";
+
+// Headers
+
+[request addValue:@"proxyman.io" forHTTPHeaderField:@"Host"];
+[request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+[request addValue:@"123" forHTTPHeaderField:@"Content-Length"];
+[request addValue:@"json" forHTTPHeaderField:@"Acceptance"];
+
+// JSON Body
+
+NSDictionary* bodyObject = @{
+    @"Name": @"Proxyman",
+    @"Country": @"Singapore"
+};
+request.HTTPBody = [NSJSONSerialization dataWithJSONObject:bodyObject options:kNilOptions error:NULL];
+
+// Connection
+
+NSURLConnection* connection = [NSURLConnection connectionWithRequest:request delegate:nil];
+[connection start];
+
+/*
+ * Utils: Add this section before your class implementation
+ */
+
+/**
+ This creates a new query parameters string from the given NSDictionary. For
+ example, if the input is @{@"day":@"Tuesday", @"month":@"January"}, the output
+ string will be @"day=Tuesday&month=January".
+ @param queryParameters The input dictionary.
+ @return The created parameters string.
+*/
+static NSString* NSStringFromQueryParameters(NSDictionary* queryParameters)
+{
+    NSMutableArray* parts = [NSMutableArray array];
+    [queryParameters enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        NSString *part = [NSString stringWithFormat: @"%@=%@",
+            [key stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding],
+            [value stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]
+        ];
+        [parts addObject:part];
+    }];
+    return [parts componentsJoinedByString: @"&"];
+}
+
+/**
+ Creates a new URL by adding the given query parameters.
+ @param URL The input URL.
+ @param queryParameters The query parameter dictionary to add.
+ @return A new NSURL.
+*/
+static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryParameters)
+{
+    NSString* URLString = [NSString stringWithFormat:@"%@?%@",
+        [URL absoluteString],
+        NSStringFromQueryParameters(queryParameters),
+    ];
+    return [NSURL URLWithString:URLString];
+}`;
+  console.log(output);
+  expectEqualWithoutFormat(expected, output);
+});
