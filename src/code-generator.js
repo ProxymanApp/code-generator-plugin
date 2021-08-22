@@ -6,6 +6,7 @@ const AxiosCodeGenerator = require("./targets/AxiosCodeGenerator");
 const HTTPieCodeGenerator = require("./targets/HTTPieCodeGenerator");
 const GoHTTPCodeGenerator = require("./targets/GoHTTPCodeGenerator");
 const JavaApacheHTTPClientFluentAPICodeGenerator = require("./targets/JavaApacheHttpClientFluentAPICodeGenerator");
+const JavascriptJQueryCodeGenerator = require("./targets/JavaScriptjQueryCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -49,7 +50,7 @@ exports.convert = (request, target) => {
     case "swift-moya":
       return SwiftMoyaCodeGenerator.generate(request);
     case "objc-nsurlsession":
-      return ObjectiveCNSURLSession.generate(request);    
+      return ObjectiveCNSURLSession.generate(request);
     case "axios":
       return AxiosCodeGenerator.generate(request);
     case "httpie":
@@ -58,6 +59,8 @@ exports.convert = (request, target) => {
       return GoHTTPCodeGenerator.generate(request);
     case "java":
       return JavaApacheHTTPClientFluentAPICodeGenerator.generate(request);
+    case "javascript-jquery":
+      return JavascriptJQueryCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }

@@ -452,3 +452,41 @@ test("Java HTTP Apache Fluent should work", () => {
   }`;
   expectEqualWithoutFormat(expected, output);
 });
+
+test("Javascript jQuery should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "javascript-jquery");
+  let expected = `/**
+  Proxyman Code Generator (1.0.0): Javascript + jQuery
+  POST https://proxyman.io/get
+  */
+ 
+ jQuery.ajax({
+     url: "https://proxyman.io/get?" + jQuery.param({
+         "data": "123",
+     }),
+     type: "POST",
+     headers: {
+         "Host": "proxyman.io",
+         "Content-Type": "application/json",
+         "Content-Length": "123",
+         "Acceptance": "json",
+     },
+     contentType: "application/json",
+     data: JSON.stringify({
+         "Name": "Proxyman",
+         "Country": "Singapore"
+     })
+ })
+ .done(function(data, textStatus, jqXHR) {
+     console.log("HTTP Request Succeeded: " + jqXHR.status);
+     console.log(data);
+ })
+ .fail(function(jqXHR, textStatus, errorThrown) {
+     console.log("HTTP Request Failed");
+ })
+ .always(function() {
+     /* ... */
+ });`;
+  expectEqualWithoutFormat(expected, output);
+});
