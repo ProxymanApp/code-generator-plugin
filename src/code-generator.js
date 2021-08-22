@@ -3,6 +3,7 @@ const SwiftNSURLSessionGenerator = require("./targets/SwiftNSURLSessionCodeGener
 const SwiftMoyaCodeGenerator = require("./targets/SwiftMoyaCodeGenerator");
 const ObjectiveCNSURLSession = require("./targets/ObjCNSURLConnectionCodeGenerator");
 const AxiosCodeGenerator = require("./targets/AxiosCodeGenerator");
+const HTTPieCodeGenerator = require("./targets/HTTPieCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -49,6 +50,8 @@ exports.convert = (request, target) => {
       return ObjectiveCNSURLSession.generate(request);    
     case "axios":
       return AxiosCodeGenerator.generate(request);
+    case "httpie":
+      return HTTPieCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }
