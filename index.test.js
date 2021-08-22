@@ -345,3 +345,67 @@ test("HTTPie should work", () => {
       Country="Singapore"`;
   expectEqualWithoutFormat(expected, output);
 });
+
+test("Go should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "go");
+  let expected = `package main
+    
+  import (
+      "fmt"
+      "io/ioutil"
+      "net/http"
+      "os"
+      "bytes"
+  )
+  
+  func send() error {
+    // Proxyman Code Generator (1.0.0): Go HTTP
+    // POST https://proxyman.io/get
+  
+      json := []byte(\`{"Name": "Proxyman","Country": "Singapore"}\`)
+      body := bytes.NewBuffer(json)
+  
+  
+      // Create request
+      req, err := http.NewRequest("POST", "https://proxyman.io/get?data=123", body)
+      if err != nil {
+              fmt.Fprintln(os.Stderr, err)
+              return err
+      }
+  
+      // Headers
+      req.Header.Add("Host", "proxyman.io")
+      req.Header.Add("Content-Type", "application/json")
+      req.Header.Add("Content-Length", "123")
+      req.Header.Add("Acceptance", "json")
+  
+      if err := req.ParseForm(); err != nil {
+              fmt.Fprintln(os.Stderr, err)
+              return err 
+      }
+  
+      // Fetch Request
+      resp, err := http.DefaultClient.Do(req)
+      if err != nil {
+              fmt.Fprintln(os.Stderr, err)
+              return err
+      }
+      defer resp.Body.Close()
+  
+      // Read Response Body
+      respBody, err := ioutil.ReadAll(resp.Body)
+      if err != nil {
+              fmt.Fprintln(os.Stderr, err)
+              return err
+      }
+  
+      // Display Results
+      fmt.Println("response Status : ", resp.Status)
+      fmt.Println("response Headers : ", resp.Header)
+      fmt.Println("response Body : ", string(respBody))
+  
+      return nil
+  }`;
+  expectEqualWithoutFormat(expected, output);
+});

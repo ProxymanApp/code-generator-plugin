@@ -39,7 +39,7 @@ const body = (request) => {
 
 const metadata = {
   name: "Axios",
-  fileExtension: "swift",
+  fileExtension: "js",
   identifier: "com.proxyman.plugin.axiosCodeGenerator",
   author: "Paw and Proxyman",
   version: "1.0.0"

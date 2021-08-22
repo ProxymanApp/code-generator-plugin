@@ -213,7 +213,7 @@ exports.generate = function (request) {
 
 const metadata = {
   name: "HTTPie",
-  fileExtension: "swift",
+  fileExtension: "sh",
   identifier: "com.proxyman.plugin.httpie",
   author: "Paw and Proxyman",
   version: "1.0.0",

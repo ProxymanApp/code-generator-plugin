@@ -4,6 +4,7 @@ const SwiftMoyaCodeGenerator = require("./targets/SwiftMoyaCodeGenerator");
 const ObjectiveCNSURLSession = require("./targets/ObjCNSURLConnectionCodeGenerator");
 const AxiosCodeGenerator = require("./targets/AxiosCodeGenerator");
 const HTTPieCodeGenerator = require("./targets/HTTPieCodeGenerator");
+const GoHTTPCodeGenerator = require("./targets/GoHTTPCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -52,6 +53,8 @@ exports.convert = (request, target) => {
       return AxiosCodeGenerator.generate(request);
     case "httpie":
       return HTTPieCodeGenerator.generate(request);
+    case "go":
+      return GoHTTPCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }
