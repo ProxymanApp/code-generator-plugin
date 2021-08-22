@@ -2,6 +2,7 @@ const SwiftAlamofireCodeGenerator = require("./targets/SwiftAlamofireCodeGenerat
 const SwiftNSURLSessionGenerator = require("./targets/SwiftNSURLSessionCodeGenerator");
 const SwiftMoyaCodeGenerator = require("./targets/SwiftMoyaCodeGenerator");
 const ObjectiveCNSURLSession = require("./targets/ObjCNSURLConnectionCodeGenerator");
+const AxiosCodeGenerator = require("./targets/AxiosCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -46,6 +47,8 @@ exports.convert = (request, target) => {
       return SwiftMoyaCodeGenerator.generate(request);
     case "objc-nsurlsession":
       return ObjectiveCNSURLSession.generate(request);    
+    case "axios":
+      return AxiosCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }

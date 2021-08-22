@@ -305,6 +305,27 @@ static NSURL* NSURLByAppendingQueryParameters(NSURL* URL, NSDictionary* queryPar
     ];
     return [NSURL URLWithString:URLString];
 }`;
-  console.log(output);
+  expectEqualWithoutFormat(expected, output);
+});
+
+test("Axios should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "axios");
+  let expected = `axios({
+    "method": "POST",
+    "params": {
+            "data": "123"
+    },
+    "headers": {
+            "Host": "proxyman.io",
+            "Content-Type": "application/json",
+            "Content-Length": 123,
+            "Acceptance": "json"
+    },
+    "data": {
+            "Name": "Proxyman",
+            "Country": "Singapore"
+    }
+})`;
   expectEqualWithoutFormat(expected, output);
 });
