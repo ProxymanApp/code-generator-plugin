@@ -516,3 +516,59 @@ test("Node Fetch should work", () => {
 
   expectEqualWithoutFormat(expected, output);
 });
+
+test("Node HTTP should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "node-http");
+  let expected = `/**
+  Proxyman Code Generator (1.0.0): NodeJS + Fetch
+  POST proxyman.io//get?data=123
+  */
+(function(callback) {
+    'use strict';
+        
+    const httpTransport = require('https');
+    const responseEncoding = 'utf8';
+    const httpOptions = {
+        hostname: 'proxyman.io',
+        port: '443',
+        path: '/get?data=123',
+        method: 'POST',
+        headers: {"Host":"proxyman.io","Content-Type":"application/json","Content-Length":123,"Acceptance":"json"}
+    };
+    httpOptions.headers['User-Agent'] = 'node ' + process.version;
+ 
+
+    const request = httpTransport.request(httpOptions, (res) => {
+        let responseBufs = [];
+        let responseStr = '';
+        
+        res.on('data', (chunk) => {
+            if (Buffer.isBuffer(chunk)) {
+                responseBufs.push(chunk);
+            }
+            else {
+                responseStr = responseStr + chunk;            
+            }
+        }).on('end', () => {
+            responseStr = responseBufs.length > 0 ? 
+                Buffer.concat(responseBufs).toString(responseEncoding) : responseStr;
+            
+            callback(null, res.statusCode, res.headers, responseStr);
+        });
+        
+    })
+    .on('error', (error) => {
+        callback(error);
+    });
+    request.write({"Name":"Proxyman","Country":"Singapore"});    
+    request.end();
+    
+})((error, statusCode, headers, body) => {
+    console.log('ERROR:', error); 
+    console.log('STATUS:', statusCode);
+    console.log('HEADERS:', JSON.stringify(headers));
+    console.log('BODY:', body);
+});`;
+  expectEqualWithoutFormat(expected, output);
+});
