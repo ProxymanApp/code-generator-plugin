@@ -492,27 +492,27 @@ test("Node Fetch should work", () => {
   const request = requestFactory("PostWithJSONBody");
   const output = CodeGenerator.convert(request, "node-fetch");
   let expected = `import fetch from 'node-fetch';
-      
-  // Proxyman Code Generator (1.0.0): NodeJS + Fetch
-  // POST https://proxyman.io/get
-
-  var config = {
-    "method": "post",
-    "headers": {
-            "Host": "proxyman.io",
-            "Content-Type": "application/json",
-            "Content-Length": 123,
-            "Acceptance": "json"
-    }
-}
-  const body = {
-    "Name": "Proxyman",
-    "Country": "Singapore"
-}
-  config.body = body
     
-  const response = await fetch('https://proxyman.io/get?data=123', config);
+  /**
+   Proxyman Code Generator (1.0.0): NodeJS + Fetch
+   POST https://proxyman.io/get
+   */
+  
+  const response = await fetch("https://proxyman.io/get?data=123", {
+      method: "post",
+      headers: {
+          "Host": "proxyman.io",
+          "Content-Type": "application/json",
+          "Content-Length": "123",
+          "Acceptance": "json",
+      },
+      body: JSON.stringify({
+          "Name": "Proxyman",
+          "Country": "Singapore"
+      })
+  })
   const data = await response.json();
   console.log(data);`;
+
   expectEqualWithoutFormat(expected, output);
 });
