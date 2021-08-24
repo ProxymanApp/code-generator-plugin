@@ -3,7 +3,7 @@ const URI = require("URIjs");
 exports.generate = function (request) {
   request.urlParameters = URI(request.url).search(true);
   const config = {
-      method: request.method,
+      method: request.method.toLowerCase(),
       url: request.urlBase,
       ...extract(request, 'urlParameters', 'params'),
       ...extract(request, 'headers'),

@@ -7,6 +7,7 @@ const HTTPieCodeGenerator = require("./targets/HTTPieCodeGenerator");
 const GoHTTPCodeGenerator = require("./targets/GoHTTPCodeGenerator");
 const JavaApacheHTTPClientFluentAPICodeGenerator = require("./targets/JavaApacheHttpClientFluentAPICodeGenerator");
 const JavascriptJQueryCodeGenerator = require("./targets/JavaScriptjQueryCodeGenerator");
+const NodeFetchCodeGenerator = require("./targets/NodeFetchCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -61,6 +62,8 @@ exports.convert = (request, target) => {
       return JavaApacheHTTPClientFluentAPICodeGenerator.generate(request);
     case "javascript-jquery":
       return JavascriptJQueryCodeGenerator.generate(request);
+    case "node-fetch":
+      return NodeFetchCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }
