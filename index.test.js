@@ -33,14 +33,16 @@ const expectEqualWithoutFormat = (expected, received) => {
 test("Swift Alamofire should work", () => {
   const request = requestFactory("PostWithJSONBody");
   const output = CodeGenerator.convert(request, "swift-alamofire");
-  let expected = `func sendRequest() {
+  let expected = `import Alamofire
+    
+  func sendRequest() {
     /**
-     Proxyman Code Generator (1.0.0): Swift + Alamofire 4
+     Proxyman Code Generator (1.0.0): Swift + Alamofire 5
      POST https://proxyman.io/get
      */
   
     // Add Headers
-    let headers = [
+    let headers: HTTPHeaders = [
         "Host": "proxyman.io",
         "Content-Type": "application/json",
         "Content-Length": "123",
@@ -54,15 +56,10 @@ test("Swift Alamofire should work", () => {
       ]
   
     // Fetch Request
-    Alamofire.request("https://proxyman.io/get?data=123", method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers)
-        .validate(statusCode: 200..<300)
+    AF.request("https://proxyman.io/get?data=123", method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers)
+        .validate()
         .responseJSON { response in
-            if (response.result.error == nil) {
-                debugPrint("HTTP Response Body: (response.data)")
-            }
-            else {
-                debugPrint("HTTP Request failed: (response.result.error)")
-            }
+          debugPrint(response)
         }
   }`;
   expectEqualWithoutFormat(expected, output);
@@ -179,7 +176,7 @@ test("Swift Moya should work", () => {
   let expected = `import Moya
     
   /**
-   Proxyman Code Generator (1.0.0): Swift + Alamofire 4
+   Proxyman Code Generator (1.0.0): Swift + Moya
    POST proxyman.io
    */
   

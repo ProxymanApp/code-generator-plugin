@@ -138,12 +138,11 @@ const metadata = {
 
 // Inlcude a template because we could not build require("fs") in webpack
 
-const codeTemplate = `
-
-import Moya
+const codeTemplate = 
+`import Moya
 
 /**
- Proxyman Code Generator ({{{version}}}): Swift + Alamofire 4
+ Proxyman Code Generator ({{{version}}}): Swift + Moya
  {{{headline}}}
  */
 
