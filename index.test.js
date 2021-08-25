@@ -331,10 +331,7 @@ test("Axios should work", () => {
 test("HTTPie should work", () => {
   const request = requestFactory("PostWithJSONBody");
   const output = CodeGenerator.convert(request, "httpie");
-  let expected = `# Proxyman Code Generator (1.0.0): HTTPie
-  # POST https://proxyman.io/get
-  
-  http --json POST 'https://proxyman.io/get?data=123' \\
+  let expected = `http --json POST 'https://proxyman.io/get?data=123' \\
       'Host':'proxyman.io' \\
       'Content-Type':'application/json' \\
       'Content-Length':'123' \\
