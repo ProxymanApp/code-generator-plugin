@@ -6,18 +6,6 @@ const addslashes = function (str) {
   return ("" + str).replace(/[\\"]/g, "\\$&").replace(/[\n\r\f]/gm, "\\n");
 };
 
-const slugify = function (str) {
-  var l, m, re;
-  re = /([a-zA-Z0-9])([a-zA-Z0-9]*)/g;
-  l = [];
-  while ((m = re.exec(str))) {
-    if (m) {
-      l.push(m[1].toUpperCase() + m[2].toLowerCase());
-    }
-  }
-  return l.join("");
-};
-
 const urlTransform = function (request) {
   var name, url_params, url_params_object, value;
   url_params_object = (function () {
@@ -202,15 +190,17 @@ const json_body_object = function (object, indent) {
 exports.generate = function (request) {
   var method, view;
   method = request.method.toUpperCase();
+  const url = urlTransform(request);
   view = {
     request: request,
     method: method.toLowerCase(),
-    url: urlTransform(request),
+    url: url,
     headers: headersTransform(request),
     body: bodyTransform(request),
     timeout: request.timeout ? request.timeout / 1000 : null,
-    codeSlug: slugify(request.name),
     httpBasicAuth: request.httpBasicAuth,
+    headline: `${method.toUpperCase()} ${url.base}`,
+    version: metadata.version
   };
 
   if (
@@ -219,27 +209,27 @@ exports.generate = function (request) {
   ) {
     view["has_params_to_encode"] = true;
   }
-  return Mustache.render(template, view);
+  return Mustache.render(codeTemplate, view);
 };
 
-exports.metadata = () => {
-  return {
-    name: "Swift Generator",
-    fileExtension: "swift",
-    title: "Swift (Alamofire 4)",
-    mime: "swift",
-    identifier: "com.proxyman.plugin.SwiftAlamofireGenerator",
-    author: "Paw and Proxyman",
-  };
+const metadata = {
+  name: "Swift Alamofire",
+  fileExtension: "swift",
+  identifier: "com.proxyman.plugin.SwiftAlamofireGenerator",
+  author: "Paw and Proxyman",
+  version: "1.0.0"
 };
 
 // Inlcude a template because we could not build require("fs") in webpack
 
-const template = `
-func send{{{codeSlug}}}Request() {
+const codeTemplate = 
+`
+import Alamofire
+
+func sendRequest() {
   /**
-   {{{request.name}}}
-   {{{method}}} {{{url.base}}}
+   Proxyman Code Generator ({{{version}}}): Swift + Alamofire 5
+   {{{headline}}}
    */
 
   {{! ----- Timeout ----- }}
@@ -253,9 +243,9 @@ func send{{{codeSlug}}}Request() {
   {{! ----- Headers ----- }}
   {{#headers.has_headers}}
   // Add Headers
-  let headers = [
+  let headers: HTTPHeaders = [
   {{#headers.header_list}}
-      "{{{header_name}}}":"{{{header_value}}}",
+      "{{{header_name}}}": "{{{header_value}}}",
   {{/headers.header_list}}
   ]
 
@@ -265,7 +255,7 @@ func send{{{codeSlug}}}Request() {
   // Add URL parameters
   let urlParams = [
   {{#url.params}}
-      "{{{name}}}":"{{{value}}}",
+      "{{{name}}}": "{{{value}}}",
   {{/url.params}}
   ]
 
@@ -275,7 +265,7 @@ func send{{{codeSlug}}}Request() {
   // Form URL-Encoded Body
   let body = [
   {{#body.url_encoded_body}}
-      "{{{name}}}":"{{{value}}}",
+      "{{{name}}}": "{{{value}}}",
   {{/body.url_encoded_body}}
   ]
 
@@ -306,37 +296,26 @@ func send{{{codeSlug}}}Request() {
   
   {{/body.has_raw_body}}
   // Fetch Request
-  {{#timeout}}manager{{/timeout}}{{^timeout}}Alamofire{{/timeout}}.request({{#has_params_to_encode}}"{{{url.base}}}"{{/has_params_to_encode}}{{^has_params_to_encode}}"{{{url.fullpath}}}"{{/has_params_to_encode}}, method: .{{{method}}}{{#body}}{{^body.has_raw_body}}, parameters: body{{/body.has_raw_body}}{{/body}}{{#body.has_raw_body}}, encoding: RawDataEncoding.default{{/body.has_raw_body}}{{^body}}{{#has_params_to_encode}}, parameters: urlParams{{/has_params_to_encode}}{{/body}}{{#body.has_json_body}}, encoding: JSONEncoding.default{{/body.has_json_body}}{{#body.has_url_encoded_body}}, encoding: URLEncoding.default{{/body.has_url_encoded_body}}{{#headers.has_headers}}, headers: headers{{/headers.has_headers}})
+  {{#timeout}}manager{{/timeout}}{{^timeout}}AF{{/timeout}}.request({{#has_params_to_encode}}"{{{url.base}}}"{{/has_params_to_encode}}{{^has_params_to_encode}}"{{{url.fullpath}}}"{{/has_params_to_encode}}, method: .{{{method}}}{{#body}}{{^body.has_raw_body}}, parameters: body{{/body.has_raw_body}}{{/body}}{{#body.has_raw_body}}, encoding: RawDataEncoding.default{{/body.has_raw_body}}{{^body}}{{#has_params_to_encode}}, parameters: urlParams{{/has_params_to_encode}}{{/body}}{{#body.has_json_body}}, encoding: JSONEncoding.default{{/body.has_json_body}}{{#body.has_url_encoded_body}}, encoding: URLEncoding.default{{/body.has_url_encoded_body}}{{#headers.has_headers}}, headers: headers{{/headers.has_headers}})
   {{#httpBasicAuth}}
-      .authenticate(user: "{{httpBasicAuth.username}}", password: "{{httpBasicAuth.password}}")
+      .authenticate(username: "{{httpBasicAuth.username}}", password: "{{httpBasicAuth.password}}")
   {{/httpBasicAuth}}
-      .validate(statusCode: 200..<300)
+      .validate()
       .responseJSON { response in
-          if (response.result.error == nil) {
-              debugPrint("HTTP Response Body: \(response.data)")
-          }
-          else {
-              debugPrint("HTTP Request failed: \(response.result.error)")
-          }
+        debugPrint(response)
       }
   {{/body.has_multipart_body}}
   {{! ----- Upload (Multipart) ----- }}
   {{#body.has_multipart_body}}
   // Fetch Request
-  {{#timeout}}manager{{/timeout}}{{^timeout}}Alamofire{{/timeout}}.upload(multipartFormData: { multipartFormData in
+  {{#timeout}}manager{{/timeout}}{{^timeout}}AF{{/timeout}}.upload(multipartFormData: { multipartFormData in
       {{#body.multipart_body}}
           multipartFormData.append("{{{value}}}".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName :"{{{name}}}")
       {{/body.multipart_body}}
-      }, usingThreshold: UInt64.init(), to: "{{{url.fullpath}}}", method: .{{{method}}}{{#headers.has_headers}}, headers: headers{{/headers.has_headers}}, encodingCompletion: { encodingResult in
-          switch encodingResult {
-          case .success(let upload, _, _):
-              upload.responseJSON { response in
-                  debugPrint(response)
-              }
-          case .failure(let encodingError):
-              print(encodingError)
-          }
-      })
+      }, to: "{{{url.fullpath}}}", method: .{{{method}}}{{#headers.has_headers}}, headers: headers{{/headers.has_headers}}).
+      .responseJSON { response in
+          debugPrint(response)
+      }
   {{/body.has_multipart_body}}
 }
 `;
