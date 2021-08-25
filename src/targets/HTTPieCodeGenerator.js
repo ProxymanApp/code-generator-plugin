@@ -222,10 +222,7 @@ const metadata = {
 // Inlcude a template because we could not build require("fs") in webpack
 
 const codeTemplate =
-`# Proxyman Code Generator ({{{version}}}): HTTPie
-# {{{headline}}}
-
-{{#body.has_multipart_body}}
+`{{#body.has_multipart_body}}
 # note: HTTPie will post as form url-encoded if no file is specified
 {{/body.has_multipart_body}}
 {{! ----- }}

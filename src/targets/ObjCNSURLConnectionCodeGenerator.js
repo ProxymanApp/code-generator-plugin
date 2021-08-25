@@ -199,8 +199,7 @@ const metadata = {
 // Inlcude a template because we could not build require("fs") in webpack
 
 const codeTemplate = 
-`
-/**
+`/**
   Proxyman Code Generator ({{{version}}}): Objective-C NSURLSession
   {{{headline}}}
 */

@@ -223,8 +223,7 @@ const metadata = {
 // Inlcude a template because we could not build require("fs") in webpack
 
 const codeTemplate = 
-`
-import Alamofire
+`import Alamofire
 
 func sendRequest() {
   /**
