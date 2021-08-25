@@ -1,3 +1,5 @@
+const URI = require("URIjs");
+
 exports.generate = (harContent) => {
   const postmanContent = {
     info: generateInfo(),
@@ -22,12 +24,12 @@ const generateItems = (harContent) => {
 
 const generateItem = (harContentEntry) => {
   const harRequest = harContentEntry.request;
-  const harRequestUrl = new URL(harRequest.url);
+  const harRequestUrl = new URI(harRequest.url);
   const harResponse = harContentEntry.response;
   const item = {
     name: generateItemName(
       harRequest.method,
-      harRequestUrl.pathname,
+      harRequestUrl.pathname(),
       harResponse.status
     ),
     request: generateItemRequest(harRequest),
@@ -59,8 +61,8 @@ const generateItemName = (method, path, responseCode) => {
 };
 
 const generateItemRequest = (harRequest) => {
-  const harRequestUrl = new URL(harRequest.url);
-  const itemRequest = {
+  const harRequestUrl = new URI(harRequest.url);
+  var itemRequest = {
     method: harRequest.method,
     url: generateItemRequestUrl(harRequestUrl, harRequest.queryString),
     header: generateItemRequestHeaders(
@@ -78,15 +80,14 @@ const generateItemRequest = (harRequest) => {
 };
 
 const generateItemRequestUrl = (harRequestUrl, queryString) => {
-  const harPathnameArray = harRequestUrl.pathname.split("/");
-  const itemRequestUrl = {
+  var itemRequestUrl = {
     raw: harRequestUrl.toString(),
-    protocol: harRequestUrl.protocol.slice(0, -1),
-    host: harRequestUrl.hostname.split("."),
-    path: harPathnameArray.slice(1),
+    protocol: harRequestUrl.protocol(),
+    host: harRequestUrl.hostname(),
+    path: harRequestUrl.path(),
   };
-  if (harRequestUrl.port.length != 0) {
-    itemRequestUrl.port = harRequestUrl.port;
+  if (harRequestUrl.port().length != 0) {
+    itemRequestUrl.port = harRequestUrl.port();
   }
   if (queryString.length > 0) {
     itemRequestUrl.query = generateQueryParams(queryString);
@@ -118,26 +119,11 @@ const isRelevantHeader = (header) => {
     "host",
     "connection",
     "content-length",
-    "pragma",
-    "cache-control",
-    "accept",
-    "sec-fetch-dest",
-    "user-agent",
-    "origin",
-    "sec-fetch-site",
-    "sec-fetch-mode",
-    ,
-    "sec-fetch-user",
-    "referer",
-    "accept-encoding",
-    "accept-language",
-    "cookie",
-    "upgrade-insecure-requests",
     ":scheme",
     ":authority",
     ":method",
     ":path",
-    "api_key",
+    ":host"
   ];
   return !irrelevantHarHeaders.includes(header.name.toLowerCase());
 };
