@@ -9,6 +9,7 @@ const JavaApacheHTTPClientFluentAPICodeGenerator = require("./targets/JavaApache
 const JavascriptJQueryCodeGenerator = require("./targets/JavaScriptjQueryCodeGenerator");
 const NodeFetchCodeGenerator = require("./targets/NodeFetchCodeGenerator");
 const NodeHTTPCodeGenerator = require("./targets/NodeHTTPCodeGenerator");
+const PostmanCollectionCodeGenerator = require("./targets/PostmanCollection2CodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -68,7 +69,8 @@ exports.convert = (request, target) => {
     case "node-http":
       return NodeHTTPCodeGenerator.generate(request);
     case "postmanCollection2":
-      break;
+      // Request must be a HAR JSON
+      return PostmanCollectionCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }

@@ -1,4 +1,5 @@
 const CodeGenerator = require("./src/code-generator");
+const fs = require('fs');
 
 const requestFactory = (type) => {
   switch (type) {
@@ -570,5 +571,15 @@ test("Node HTTP should work", () => {
     console.log('HEADERS:', JSON.stringify(headers));
     console.log('BODY:', body);
 });`;
+  expectEqualWithoutFormat(expected, output);
+});
+
+test("PostmanCollection2 should work", () => {
+  const harFile = JSON.parse(
+    fs.readFileSync(__dirname + "/resources/sample.har", "utf8")
+  );
+  const output = CodeGenerator.convert(harFile, "postmanCollection2");
+  let expected = `{"info":{"name":"Proxyman Code Generator: PostmanCollection2","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"GET /public-api/users","request":{"method":"GET","url":{"raw":"https://gorest.co.in/public-api/users?first_name=john","protocol":"https","host":["gorest","co","in"],"path":["public-api","users"],"query":[{"value":"john","key":"first_name"}]},"header":[{"key":"Authorization","value":"Bearer GycBk4kyvJYJWcIV33YwdR5yPXi7WeXtKqmY"}]}},{"name":"POST /public-api/users","request":{"method":"POST","url":{"raw":"https://gorest.co.in/public-api/users","protocol":"https","host":["gorest","co","in"],"path":["public-api","users"]},"header":[{"key":"Authorization","value":"Bearer GycBk4kyvJYJWcIV33YwdR5yPXi7WeXtKqmY"},{"key":"Content-Type","value":"application/json;charset=UTF-8"}],"body":{"mode":"raw","raw":"{\\"first_name\\":\\"Brian\\",\\"last_name\\":\\"Ratke\\",\\"gender\\":\\"male\\",\\"email\\":\\"lew19@roberts.com\\",\\"status\\":\\"active\\"}","options":{"raw":{"language":"json"}}}}}]}`;
+  console.log(output);
   expectEqualWithoutFormat(expected, output);
 });
