@@ -69,8 +69,11 @@ exports.convert = (request, target) => {
     case "node-http":
       return NodeHTTPCodeGenerator.generate(request);
     case "postmanCollection2":
-      // Request must be a HAR JSON
-      return PostmanCollectionCodeGenerator.generate(request);
+      // Request must be a HAR JSON string
+      if (request.harString) {
+        const obj = JSON.parse(request.harString)
+        return PostmanCollectionCodeGenerator.generate(obj);
+      }
     default:
       return `Unknow target ${target}`;
   }
