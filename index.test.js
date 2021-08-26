@@ -590,3 +590,39 @@ test("PostmanCollection2 should work - Sample 2", () => {
   let expected = `{"info":{"name":"Proxyman Code Generator: PostmanCollection2","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"GET /v1/posts","request":{"method":"GET","url":{"raw":"https://api.producthunt.com/v1/posts?days_ago=0&search%5Bcategory%5D=all","protocol":"https","host":"api.producthunt.com","path":"/v1/posts","query":[{"value":"0","key":"days_ago"},{"value":"all","key":"search[category]"}]},"header":[{"key":"Content-Type","value":"application/json"},{"key":"If-None-Match","value":"W/\\"ea5fb80e1a89f2e4747d0273320cfdb4\\""},{"key":"Accept","value":"application/json"},{"key":"If-Modified-Since","value":"Wed, 25 Aug 2021 08:49:52 GMT"},{"key":"User-Agent","value":"Product Hunt/1.0.3 (Mac OS X Version 10.16 (Build 20G95))"},{"key":"Accept-Language","value":"en-VN;q=1"},{"key":"Authorization","value":"Bearer a2b5081dd96232bd0f6f309ad5d5a41c59560a4d67d0fe21d58a019c9f52a35b"},{"key":"Accept-Encoding","value":"gzip, deflate"}]}}]}`;
   expectEqualWithoutFormat(expected, output);
 });
+
+test("Python Request should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "python-request");
+  let expected = `import requests
+  import json
+  
+  # Proxyman Code Generator (1.0.0): Python + Request
+  # POST https://proxyman.io/get
+  
+  def send_request():
+      try:
+          response = requests.post(
+              url="https://proxyman.io/get",
+              params={
+                  "data": "123",
+              },
+              headers={
+                  "Host": "proxyman.io",
+                  "Content-Type": "application/json",
+                  "Content-Length": "123",
+                  "Acceptance": "json",
+              },
+              data=json.dumps({
+                  "Name": "Proxyman",
+                  "Country": "Singapore"
+              })
+          )
+          print('Response HTTP Status Code: {status_code}'.format(
+              status_code=response.status_code))
+          print('Response HTTP Response Body: {content}'.format(
+              content=response.content))
+      except requests.exceptions.RequestException:
+          print('HTTP Request failed')`;
+  expectEqualWithoutFormat(expected, output);
+});

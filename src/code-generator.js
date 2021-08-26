@@ -10,6 +10,7 @@ const JavascriptJQueryCodeGenerator = require("./targets/JavaScriptjQueryCodeGen
 const NodeFetchCodeGenerator = require("./targets/NodeFetchCodeGenerator");
 const NodeHTTPCodeGenerator = require("./targets/NodeHTTPCodeGenerator");
 const PostmanCollectionCodeGenerator = require("./targets/PostmanCollection2CodeGenerator");
+const PythonRequestGenerator = require("./targets/PythonRequestsCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -71,9 +72,11 @@ exports.convert = (request, target) => {
     case "postmanCollection2":
       // Request must be a HAR JSON string
       if (request.harString) {
-        const obj = JSON.parse(request.harString)
+        const obj = JSON.parse(request.harString);
         return PostmanCollectionCodeGenerator.generate(obj);
       }
+    case "python-request":
+      return PythonRequestGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }
