@@ -311,7 +311,7 @@ func sendRequest() {
       {{#body.multipart_body}}
           multipartFormData.append("{{{value}}}".data(using: String.Encoding.utf8, allowLossyConversion: false)!, withName :"{{{name}}}")
       {{/body.multipart_body}}
-      }, to: "{{{url.fullpath}}}", method: .{{{method}}}{{#headers.has_headers}}, headers: headers{{/headers.has_headers}}).
+      }, to: "{{{url.fullpath}}}", method: .{{{method}}}{{#headers.has_headers}}, headers: headers{{/headers.has_headers}})
       .responseJSON { response in
           debugPrint(response)
       }
