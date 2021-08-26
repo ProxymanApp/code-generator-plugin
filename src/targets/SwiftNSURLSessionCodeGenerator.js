@@ -270,7 +270,7 @@ const codeTemplate = `class MyRequestController {
           if (error == nil) {
               // Success
               let statusCode = (response as! HTTPURLResponse).statusCode
-              print("URL Session Task Succeeded: HTTP \(statusCode)")
+              print("URL Session Task Succeeded: HTTP \\(statusCode)")
           }
           else {
               // Failure
@@ -305,7 +305,6 @@ extension Dictionary : URLQueryParameterStringConvertible {
       }
       return parts.joined(separator: "&")
   }
-  
 }
 
 extension URL {
