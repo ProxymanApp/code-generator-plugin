@@ -5,7 +5,7 @@ exports.generate = (harContent) => {
     info: generateInfo(),
     item: generateItems(harContent)
   };
-  return JSON.stringify(postmanContent);
+  return JSON.stringify(postmanContent, 2, '\t');
 };
 
 const generateInfo = () => {
