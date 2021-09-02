@@ -28,7 +28,7 @@ const swiftObjectToJSObject = (items) => {
   return items;
 };
 
-exports.convert = (request, target) => {
+exports.convert = (request, target, options) => {
   // Convert [[String]] to JS Object
   // If we pass an Dictionary from Swift to JavascriptCore, the Object doesn't remain the key order
   // We intentionally follow this approach to keep the key order
@@ -73,7 +73,7 @@ exports.convert = (request, target) => {
       // Request must be a HAR JSON string
       if (request.harString) {
         const obj = JSON.parse(request.harString);
-        return PostmanCollectionCodeGenerator.generate(obj);
+        return PostmanCollectionCodeGenerator.generate(obj, options);
       }
     case "python-request":
       return PythonRequestGenerator.generate(request);

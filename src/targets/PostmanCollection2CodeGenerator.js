@@ -1,11 +1,24 @@
 const URI = require("URIjs");
 
-exports.generate = (harContent) => {
+exports.generate = (harContent, options) => {
   const postmanContent = {
     info: generateInfo(),
     item: generateItems(harContent)
   };
-  return JSON.stringify(postmanContent, 2, '\t');
+
+  // Ugly way to get option data
+  // For some reasons, webpack could not build the ?? or || operator
+  var isPrettyPrint = true;
+  if (options) {
+    if (options.isPrettyPrint !== undefined) {
+      isPrettyPrint = options.isPrettyPrint;
+    }
+  }
+  if (isPrettyPrint) {
+    return JSON.stringify(postmanContent, 2, '\t');
+  } else {
+    return JSON.stringify(postmanContent);
+  }
 };
 
 const generateInfo = () => {
