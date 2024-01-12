@@ -10,7 +10,8 @@ A collection of plugins that can generate code to various targets from Proxyman 
 Execute the following code in Terminal
 
 ```bash
-$ npm install
+$ nvm 16
+$ npm i
 $ npm run build
 ```
 
