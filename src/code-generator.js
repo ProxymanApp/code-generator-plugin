@@ -11,6 +11,7 @@ const NodeFetchCodeGenerator = require("./targets/NodeFetchCodeGenerator");
 const NodeHTTPCodeGenerator = require("./targets/NodeHTTPCodeGenerator");
 const PostmanCollectionCodeGenerator = require("./targets/PostmanCollection2CodeGenerator");
 const PythonRequestGenerator = require("./targets/PythonRequestsCodeGenerator");
+const DartRequestGenerator = require("./targets/DartHTTPCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -77,6 +78,8 @@ exports.convert = (request, target, options) => {
       }
     case "python-request":
       return PythonRequestGenerator.generate(request);
+    case "dart":
+      return DartRequestGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }
