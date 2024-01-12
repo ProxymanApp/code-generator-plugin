@@ -10,7 +10,8 @@ A collection of plugins that can generate code to various targets from Proxyman 
 Execute the following code in Terminal
 
 ```bash
-$ npm install
+$ nvm 16
+$ npm i
 $ npm run build
 ```
 
@@ -29,6 +30,7 @@ Proxyman Code Generator is built on top of Paw Code Generator Extensions. We app
 - [Paw-SwiftNSURLSessionCodeGenerator](https://github.com/luckymarmot/Paw-SwiftNSURLSessionCodeGenerator)
 - [Mustache](https://github.com/janl/mustache.js/)
 - [URI](http://medialize.github.io/URI.js/)
+- [https://github.com/babstrap/dart_http_code_generator](https://github.com/babstrap/dart_http_code_generator)
 
 ## License
 Proxyman Code Generator Plugin is released under the MIT license. See LICENSE for more information.

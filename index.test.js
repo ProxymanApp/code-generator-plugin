@@ -654,3 +654,49 @@ test("Python Request should work", () => {
           print('HTTP Request failed')`;
   expectEqualWithoutFormat(expected, output);
 });
+
+test("Dart Request should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "dart");
+  let expected = `// import http package
+  import 'package:http/http.dart' as http;
+  
+  //  (POST)
+  send_request() async {
+  
+      var url = "https://proxyman.io/get?data=123";
+      
+      // Create request
+      var request = http.Request('POST', Uri.parse(url));
+  
+      // Add headers
+      headers={
+          "Host": "proxyman.io",
+          "Content-Type": "application/json",
+          "Content-Length": "123",
+          "Acceptance": "json",
+      },
+      request.headers.addAll(headers);
+  
+      // Set body
+      request.body = json.encode({
+              "Name" : "Proxyman",
+              "Country" : "Singapore"
+          });
+      
+  
+  
+  
+  
+      // Fetch Request
+      http.StreamedResponse response = await request.send();
+  
+      if (response.statusCode == 200) {
+          debugPrint(await response.stream.bytesToString());
+      }
+      else {
+          debugPrint(response.reasonPhrase);
+      }
+  }`;
+  expectEqualWithoutFormat(expected, output);
+});
