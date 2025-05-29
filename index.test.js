@@ -368,6 +368,19 @@ test("HTTPie should work", () => {
   expectEqualWithoutFormat(expected, output);
 });
 
+test("xh should work", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "xh");
+  let expected = `xh --json POST 'https://proxyman.io/get?data=123' \\
+      'Host':'proxyman.io' \\
+      'Content-Type':'application/json' \\
+      'Content-Length':'123' \\
+      'Acceptance':'json' \\
+      Name="Proxyman" \\
+      Country="Singapore"`;
+  expectEqualWithoutFormat(expected, output);
+});
+
 test("Go should work", () => {
   const request = requestFactory("PostWithJSONBody");
   const output = CodeGenerator.convert(request, "go");

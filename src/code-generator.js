@@ -4,6 +4,7 @@ const SwiftMoyaCodeGenerator = require("./targets/SwiftMoyaCodeGenerator");
 const ObjectiveCNSURLSession = require("./targets/ObjCNSURLSessionCodeGenerator");
 const AxiosCodeGenerator = require("./targets/AxiosCodeGenerator");
 const HTTPieCodeGenerator = require("./targets/HTTPieCodeGenerator");
+const XhCodeGenerator = require("./targets/XhCodeGenerator");
 const GoHTTPCodeGenerator = require("./targets/GoHTTPCodeGenerator");
 const JavaApacheHTTPClientFluentAPICodeGenerator = require("./targets/JavaApacheHttpClientFluentAPICodeGenerator");
 const JavascriptJQueryCodeGenerator = require("./targets/JavaScriptjQueryCodeGenerator");
@@ -60,6 +61,8 @@ exports.convert = (request, target, options) => {
       return AxiosCodeGenerator.generate(request);
     case "httpie":
       return HTTPieCodeGenerator.generate(request);
+    case "xh":
+      return XhCodeGenerator.generate(request);
     case "go":
       return GoHTTPCodeGenerator.generate(request);
     case "java":
