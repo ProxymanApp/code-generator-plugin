@@ -13,6 +13,9 @@ const NodeHTTPCodeGenerator = require("./targets/NodeHTTPCodeGenerator");
 const PostmanCollectionCodeGenerator = require("./targets/PostmanCollection2CodeGenerator");
 const PythonRequestGenerator = require("./targets/PythonRequestsCodeGenerator");
 const DartRequestGenerator = require("./targets/DartHTTPCodeGenerator");
+const KotlinOkHttpCodeGenerator = require("./targets/KotlinOkHttpCodeGenerator");
+const PHPGuzzleCodeGenerator = require("./targets/PHPGuzzleCodeGenerator");
+const RustReqwestCodeGenerator = require("./targets/RustReqwestCodeGenerator");
 
 const swiftObjectToJSObject = (items) => {
   // Convert [[String]] to JS Object
@@ -83,6 +86,12 @@ exports.convert = (request, target, options) => {
       return PythonRequestGenerator.generate(request);
     case "dart":
       return DartRequestGenerator.generate(request);
+    case "kotlin-okhttp":
+      return KotlinOkHttpCodeGenerator.generate(request);
+    case "php-guzzle":
+      return PHPGuzzleCodeGenerator.generate(request);
+    case "rust-reqwest":
+      return RustReqwestCodeGenerator.generate(request);
     default:
       return `Unknow target ${target}`;
   }

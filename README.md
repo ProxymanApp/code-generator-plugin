@@ -31,6 +31,9 @@ Proxyman Code Generator is built on top of Paw Code Generator Extensions. We app
 - [Mustache](https://github.com/janl/mustache.js/)
 - [URI](http://medialize.github.io/URI.js/)
 - [https://github.com/babstrap/dart_http_code_generator](https://github.com/babstrap/dart_http_code_generator)
+- Kotlin + OkHttp Code Generator by Proxyman
+- PHP + Guzzle Code Generator by Proxyman
+- Rust + reqwest Code Generator by Proxyman
 
 ## License
 Proxyman Code Generator Plugin is released under the MIT license. See LICENSE for more information.

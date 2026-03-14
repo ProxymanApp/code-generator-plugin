@@ -6,6 +6,10 @@ const addslashes = function (str) {
   return `${str}`.replace(/[\\"]/g, "\\$&");
 };
 
+const shellEscapeSingleQuote = function (str) {
+  return `${str}`.replace(/'/g, "'\\''");
+};
+
 const urlTransform = function (request) {
   var name, url_params, url_params_object, value;
   url_params_object = (function () {
@@ -19,14 +23,14 @@ const urlTransform = function (request) {
     for (name in url_params_object) {
       value = url_params_object[name];
       results.push({
-        name: addslashes(name),
-        value: addslashes(value),
+        name: shellEscapeSingleQuote(name),
+        value: shellEscapeSingleQuote(value),
       });
     }
     return results;
   })();
   return {
-    base: addslashes(
+    base: shellEscapeSingleQuote(
       (function () {
         var _uri;
         _uri = URI(request.url);
@@ -53,8 +57,8 @@ const headersTransform = function (request) {
       for (header_name in headers) {
         header_value = headers[header_name];
         results.push({
-          header_name: addslashes(header_name),
-          header_value: addslashes(header_value),
+          header_name: shellEscapeSingleQuote(header_name),
+          header_value: shellEscapeSingleQuote(header_value),
         });
       }
       return results;
@@ -91,8 +95,8 @@ const bodyTransform = function (request) {
         for (name in url_encoded_body) {
           value = url_encoded_body[name];
           results.push({
-            name: addslashes(name),
-            value: addslashes(value),
+            name: shellEscapeSingleQuote(name),
+            value: shellEscapeSingleQuote(value),
           });
         }
         return results;
@@ -111,8 +115,8 @@ const bodyTransform = function (request) {
         for (name in multipart_body) {
           value = multipart_body[name];
           results.push({
-            name: addslashes(name),
-            value: addslashes(value),
+            name: shellEscapeSingleQuote(name),
+            value: shellEscapeSingleQuote(value),
           });
         }
         return results;
@@ -128,7 +132,7 @@ const bodyTransform = function (request) {
         has_json_encoded: false,
         has_raw_body_with_tabs_or_new_lines: has_tabs_or_new_lines,
         has_raw_body_without_tabs_or_new_lines: !has_tabs_or_new_lines,
-        raw_body: addslashes(raw_body),
+        raw_body: shellEscapeSingleQuote(raw_body),
       };
     } else {
       return {
@@ -199,6 +203,7 @@ exports.generate = function (request) {
   const url = urlTransform(request);
   view = {
     request: request,
+    escaped_url: shellEscapeSingleQuote(request.url),
     method: request.method.toUpperCase(),
     url: url,
     headers: headersTransform(request),
@@ -226,7 +231,7 @@ const codeTemplate = `{{#body.has_multipart_body}}
 # note: xh will post as form url-encoded if no file is specified
 {{/body.has_multipart_body}}
 {{! ----- }}
-xh{{#body.has_form_encoded}} --form{{/body.has_form_encoded}}{{#body.has_json_encoded}} --json{{/body.has_json_encoded}} {{{request.method}}} '{{{request.url}}}' \\
+xh{{#body.has_form_encoded}} --form{{/body.has_form_encoded}}{{#body.has_json_encoded}} --json{{/body.has_json_encoded}} {{{request.method}}} '{{{escaped_url}}}' \\
 {{! ----- }}
 {{#headers.has_headers}}
 {{#headers.header_list}}

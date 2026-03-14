@@ -24,6 +24,7 @@ exports.generate = (harContent, options) => {
 const generateInfo = () => {
   return {
     name: "Proxyman Code Generator: PostmanCollection2",
+    description: "",
     schema:
       "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
   };
@@ -42,35 +43,15 @@ const generateItem = (harContentEntry) => {
   const item = {
     name: generateItemName(
       harRequest.method,
-      harRequestUrl.pathname(),
-      harResponse.status
+      harRequestUrl.pathname()
     ),
     request: generateItemRequest(harRequest),
   };
   return item;
 };
 
-const generateItemName = (method, path, responseCode) => {
-  let status = "";
-  switch (responseCode) {
-    case 200:
-      status = "successfully";
-      break;
-    case 201:
-      status = "created";
-      break;
-    case 202:
-      status = "accepted";
-      break;
-    case 204:
-      status = "no-content";
-      break;
-    case 403:
-      status = "forbidden";
-      break;
-  }
-  let itemName = method + " " + path;
-  return itemName;
+const generateItemName = (method, path) => {
+  return method + " " + path;
 };
 
 const generateItemRequest = (harRequest) => {
@@ -146,9 +127,41 @@ const renameHeaderKey = (header) => {
 };
 
 const generateItemRequestBody = (requestBody) => {
+  const mimeType = (requestBody.mimeType || "").toLowerCase();
+
+  if (mimeType.includes("application/x-www-form-urlencoded")) {
+    return {
+      mode: "urlencoded",
+      urlencoded: (requestBody.params || []).map((p) => ({
+        key: p.name,
+        value: p.value,
+      })),
+    };
+  }
+
+  if (mimeType.includes("multipart/form-data")) {
+    return {
+      mode: "formdata",
+      formdata: (requestBody.params || []).map((p) => ({
+        key: p.name,
+        value: p.value,
+      })),
+    };
+  }
+
+  // Raw body modes
+  var language = "text";
+  if (mimeType.includes("application/json")) {
+    language = "json";
+  } else if (mimeType.includes("xml")) {
+    language = "xml";
+  } else if (mimeType.includes("text/html")) {
+    language = "html";
+  }
+
   return {
     mode: "raw",
     raw: requestBody.text,
-    options: { raw: { language: "json" } },
+    options: { raw: { language: language } },
   };
 };

@@ -617,7 +617,7 @@ test("PostmanCollection2 should work - Sample 1", () => {
     harString: harFile,
   };
   const output = CodeGenerator.convert(request, "postmanCollection2");
-  let expected = `{"info":{"name":"Proxyman Code Generator: PostmanCollection2","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"GET /public-api/users","request":{"method":"GET","url":{"raw":"https://gorest.co.in/public-api/users?first_name=john","protocol":"https","host":"gorest.co.in","path":"/public-api/users","query":[{"value":"john","key":"first_name"}]},"header":[{"key":"Pragma","value":"no-cache"},{"key":"Cache-Control","value":"no-cache"},{"key":"Accept","value":"application/json, text/plain, */*"},{"key":"Sec-Fetch-Dest","value":"empty"},{"key":"Authorization","value":"Bearer GycBk4kyvJYJWcIV33YwdR5yPXi7WeXtKqmY"},{"key":"User-Agent","value":"Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Mobile Safari/537.36"},{"key":"Sec-Fetch-Site","value":"same-origin"},{"key":"Sec-Fetch-Mode","value":"cors"},{"key":"Referer","value":"https://gorest.co.in/rest-console.html"},{"key":"Accept-Encoding","value":"gzip, deflate, br"},{"key":"Accept-Language","value":"en,en-GB;q=0.9,es-ES;q=0.8,es;q=0.7"},{"key":"Cookie","value":"_ga=GA1.3.1677929456.1584731102; _gid=GA1.3.1984759387.1584731102; PHPSESSID=642c4680uen9e29rui8liouom8; _identity=2cea55579ef1198f330cff9bccee3aab91c68b4e0af4db2fad3cf6d2907af8b3a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A49%3A%22%5B4696%2C%22x3TX8j-dSNyxye0kBhIS0P3D-aRVoFLD%22%2C1209600%5D%22%3B%7D; _gat=1; _csrf=a9fc8fa0ec419f012c31861465dc467160dab746762cc17c26ceaacbb7fbbe1ca%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22V89Ng_Y-Am3rlkK7DquCCJjEM-7yc8Xg%22%3B%7D"}]}},{"name":"POST /public-api/users","request":{"method":"POST","url":{"raw":"https://gorest.co.in/public-api/users","protocol":"https","host":"gorest.co.in","path":"/public-api/users"},"header":[{"key":"Pragma","value":"no-cache"},{"key":"Cache-Control","value":"no-cache"},{"key":"Accept","value":"application/json, text/plain, */*"},{"key":"Sec-Fetch-Dest","value":"empty"},{"key":"Authorization","value":"Bearer GycBk4kyvJYJWcIV33YwdR5yPXi7WeXtKqmY"},{"key":"User-Agent","value":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"},{"key":"Content-Type","value":"application/json;charset=UTF-8"},{"key":"Origin","value":"https://gorest.co.in"},{"key":"Sec-Fetch-Site","value":"same-origin"},{"key":"Sec-Fetch-Mode","value":"cors"},{"key":"Referer","value":"https://gorest.co.in/rest-console.html"},{"key":"Accept-Encoding","value":"gzip, deflate, br"},{"key":"Accept-Language","value":"en,en-GB;q=0.9,es-ES;q=0.8,es;q=0.7"},{"key":"Cookie","value":"_ga=GA1.3.1677929456.1584731102; _gid=GA1.3.1984759387.1584731102; PHPSESSID=642c4680uen9e29rui8liouom8; _identity=2cea55579ef1198f330cff9bccee3aab91c68b4e0af4db2fad3cf6d2907af8b3a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A49%3A%22%5B4696%2C%22x3TX8j-dSNyxye0kBhIS0P3D-aRVoFLD%22%2C1209600%5D%22%3B%7D; _csrf=fc4a35ef08f0d008e311139ac33b9da174ad3291d3a04b7481945c0cfcb537b6a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22GrZBGEDHp0VtUGu3JNl8PgK87fb9hH58%22%3B%7D"}],"body":{"mode":"raw","raw":"{\\"first_name\\":\\"Brian\\",\\"last_name\\":\\"Ratke\\",\\"gender\\":\\"male\\",\\"email\\":\\"lew19@roberts.com\\",\\"status\\":\\"active\\"}","options":{"raw":{"language":"json"}}}}}]}`;
+  let expected = `{"info":{"name":"Proxyman Code Generator: PostmanCollection2","description":"","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"GET /public-api/users","request":{"method":"GET","url":{"raw":"https://gorest.co.in/public-api/users?first_name=john","protocol":"https","host":"gorest.co.in","path":"/public-api/users","query":[{"value":"john","key":"first_name"}]},"header":[{"key":"Pragma","value":"no-cache"},{"key":"Cache-Control","value":"no-cache"},{"key":"Accept","value":"application/json, text/plain, */*"},{"key":"Sec-Fetch-Dest","value":"empty"},{"key":"Authorization","value":"Bearer GycBk4kyvJYJWcIV33YwdR5yPXi7WeXtKqmY"},{"key":"User-Agent","value":"Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Mobile Safari/537.36"},{"key":"Sec-Fetch-Site","value":"same-origin"},{"key":"Sec-Fetch-Mode","value":"cors"},{"key":"Referer","value":"https://gorest.co.in/rest-console.html"},{"key":"Accept-Encoding","value":"gzip, deflate, br"},{"key":"Accept-Language","value":"en,en-GB;q=0.9,es-ES;q=0.8,es;q=0.7"},{"key":"Cookie","value":"_ga=GA1.3.1677929456.1584731102; _gid=GA1.3.1984759387.1584731102; PHPSESSID=642c4680uen9e29rui8liouom8; _identity=2cea55579ef1198f330cff9bccee3aab91c68b4e0af4db2fad3cf6d2907af8b3a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A49%3A%22%5B4696%2C%22x3TX8j-dSNyxye0kBhIS0P3D-aRVoFLD%22%2C1209600%5D%22%3B%7D; _gat=1; _csrf=a9fc8fa0ec419f012c31861465dc467160dab746762cc17c26ceaacbb7fbbe1ca%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22V89Ng_Y-Am3rlkK7DquCCJjEM-7yc8Xg%22%3B%7D"}]}},{"name":"POST /public-api/users","request":{"method":"POST","url":{"raw":"https://gorest.co.in/public-api/users","protocol":"https","host":"gorest.co.in","path":"/public-api/users"},"header":[{"key":"Pragma","value":"no-cache"},{"key":"Cache-Control","value":"no-cache"},{"key":"Accept","value":"application/json, text/plain, */*"},{"key":"Sec-Fetch-Dest","value":"empty"},{"key":"Authorization","value":"Bearer GycBk4kyvJYJWcIV33YwdR5yPXi7WeXtKqmY"},{"key":"User-Agent","value":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"},{"key":"Content-Type","value":"application/json;charset=UTF-8"},{"key":"Origin","value":"https://gorest.co.in"},{"key":"Sec-Fetch-Site","value":"same-origin"},{"key":"Sec-Fetch-Mode","value":"cors"},{"key":"Referer","value":"https://gorest.co.in/rest-console.html"},{"key":"Accept-Encoding","value":"gzip, deflate, br"},{"key":"Accept-Language","value":"en,en-GB;q=0.9,es-ES;q=0.8,es;q=0.7"},{"key":"Cookie","value":"_ga=GA1.3.1677929456.1584731102; _gid=GA1.3.1984759387.1584731102; PHPSESSID=642c4680uen9e29rui8liouom8; _identity=2cea55579ef1198f330cff9bccee3aab91c68b4e0af4db2fad3cf6d2907af8b3a%3A2%3A%7Bi%3A0%3Bs%3A9%3A%22_identity%22%3Bi%3A1%3Bs%3A49%3A%22%5B4696%2C%22x3TX8j-dSNyxye0kBhIS0P3D-aRVoFLD%22%2C1209600%5D%22%3B%7D; _csrf=fc4a35ef08f0d008e311139ac33b9da174ad3291d3a04b7481945c0cfcb537b6a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22GrZBGEDHp0VtUGu3JNl8PgK87fb9hH58%22%3B%7D"}],"body":{"mode":"raw","raw":"{\\"first_name\\":\\"Brian\\",\\"last_name\\":\\"Ratke\\",\\"gender\\":\\"male\\",\\"email\\":\\"lew19@roberts.com\\",\\"status\\":\\"active\\"}","options":{"raw":{"language":"json"}}}}}]}`;
   expectEqualWithoutFormat(expected, output);
 });
 
@@ -628,7 +628,7 @@ test("PostmanCollection2 should work - Sample 2", () => {
     harString: harFile,
   };
   const output = CodeGenerator.convert(request, "postmanCollection2");
-  let expected = `{"info":{"name":"Proxyman Code Generator: PostmanCollection2","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"GET /v1/posts","request":{"method":"GET","url":{"raw":"https://api.producthunt.com/v1/posts?days_ago=0&search%5Bcategory%5D=all","protocol":"https","host":"api.producthunt.com","path":"/v1/posts","query":[{"value":"0","key":"days_ago"},{"value":"all","key":"search[category]"}]},"header":[{"key":"Content-Type","value":"application/json"},{"key":"If-None-Match","value":"W/\\"ea5fb80e1a89f2e4747d0273320cfdb4\\""},{"key":"Accept","value":"application/json"},{"key":"If-Modified-Since","value":"Wed, 25 Aug 2021 08:49:52 GMT"},{"key":"User-Agent","value":"Product Hunt/1.0.3 (Mac OS X Version 10.16 (Build 20G95))"},{"key":"Accept-Language","value":"en-VN;q=1"},{"key":"Authorization","value":"Bearer a2b5081dd96232bd0f6f309ad5d5a41c59560a4d67d0fe21d58a019c9f52a35b"},{"key":"Accept-Encoding","value":"gzip, deflate"}]}}]}`;
+  let expected = `{"info":{"name":"Proxyman Code Generator: PostmanCollection2","description":"","schema":"https://schema.getpostman.com/json/collection/v2.1.0/collection.json"},"item":[{"name":"GET /v1/posts","request":{"method":"GET","url":{"raw":"https://api.producthunt.com/v1/posts?days_ago=0&search%5Bcategory%5D=all","protocol":"https","host":"api.producthunt.com","path":"/v1/posts","query":[{"value":"0","key":"days_ago"},{"value":"all","key":"search[category]"}]},"header":[{"key":"Content-Type","value":"application/json"},{"key":"If-None-Match","value":"W/\\"ea5fb80e1a89f2e4747d0273320cfdb4\\""},{"key":"Accept","value":"application/json"},{"key":"If-Modified-Since","value":"Wed, 25 Aug 2021 08:49:52 GMT"},{"key":"User-Agent","value":"Product Hunt/1.0.3 (Mac OS X Version 10.16 (Build 20G95))"},{"key":"Accept-Language","value":"en-VN;q=1"},{"key":"Authorization","value":"Bearer a2b5081dd96232bd0f6f309ad5d5a41c59560a4d67d0fe21d58a019c9f52a35b"},{"key":"Accept-Encoding","value":"gzip, deflate"}]}}]}`;
   expectEqualWithoutFormat(expected, output);
 });
 
@@ -712,4 +712,604 @@ test("Dart Request should work", () => {
       }
   }`;
   expectEqualWithoutFormat(expected, output);
+});
+
+// --- Special character escaping tests ---
+
+test("HTTPie should escape single quotes in header values", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-TPE-UserId", "6028DD69-CC2E-476B-B758-5E85549727F1 'iPhone 16e'"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "httpie");
+  expect(output).toContain("'X-TPE-UserId':'6028DD69-CC2E-476B-B758-5E85549727F1 '\\''iPhone 16e'\\'''");
+});
+
+test("HTTPie should pass double quotes through literally in single-quoted headers", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", 'value with "double quotes"'],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "httpie");
+  expect(output).toContain("'X-Custom':'value with \"double quotes\"'");
+});
+
+test("HTTPie should pass backslashes through literally in single-quoted headers", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", "value with \\backslash"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "httpie");
+  expect(output).toContain("'X-Custom':'value with \\backslash'");
+});
+
+test("HTTPie should handle mixed quotes in header values", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", "it's a \"test\""],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "httpie");
+  expect(output).toContain("'X-Custom':'it'\\''s a \"test\"'");
+});
+
+test("xh should escape single quotes in header values", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-TPE-UserId", "6028DD69-CC2E-476B-B758-5E85549727F1 'iPhone 16e'"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "xh");
+  expect(output).toContain("'X-TPE-UserId':'6028DD69-CC2E-476B-B758-5E85549727F1 '\\''iPhone 16e'\\'''");
+});
+
+test("xh should pass double quotes through literally in single-quoted headers", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", 'value with "double quotes"'],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "xh");
+  expect(output).toContain("'X-Custom':'value with \"double quotes\"'");
+});
+
+test("Python should escape double quotes in header values", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", 'value with "double quotes"'],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "python-request");
+  expect(output).toContain('"X-Custom": "value with \\"double quotes\\""');
+});
+
+test("Go should escape double quotes in header values", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", 'value with "double quotes"'],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "go");
+  expect(output).toContain('req.Header.Add("X-Custom", "value with \\"double quotes\\"")');
+});
+
+test("Node Fetch should escape double quotes in header values", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", 'value with "double quotes"'],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "node-fetch");
+  expect(output).toContain('"X-Custom": "value with \\"double quotes\\""');
+});
+
+test("HTTPie should escape single quotes in URL query params", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api?name=it's+a+test",
+    _headers: [
+      ["Host", "example.com"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "httpie");
+  expect(output).not.toContain("it's");
+  expect(output).toContain("'\\''");
+});
+
+test("HTTPie should escape single quotes in body values", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [
+      ["Content-Type", "application/x-www-form-urlencoded"],
+    ],
+    _urlEncodedBody: [
+      ["field", "it's a value"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "httpie");
+  expect(output).toContain("'field'='it'\\''s a value'");
+});
+
+// --- Kotlin + OkHttp tests ---
+
+test("Kotlin OkHttp should work with POST + JSON body", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain("import okhttp3.OkHttpClient");
+  expect(output).toContain("import okhttp3.MediaType.Companion.toMediaType");
+  expect(output).toContain('val mediaType = "application/json".toMediaType()');
+  expect(output).toContain(".post(body)");
+  expect(output).toContain('.url("https://proxyman.io/get?data=123")');
+  expect(output).toContain('.addHeader("Host", "proxyman.io")');
+  expect(output).toContain("Proxyman");
+  expect(output).toContain("Singapore");
+});
+
+test("Kotlin OkHttp should escape double quotes in values", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", 'value with "quotes"'],
+    ],
+    jsonBody: { key: 'value with "quotes"' },
+  };
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain('.addHeader("X-Custom", "value with \\"quotes\\"")');
+});
+
+test("Kotlin OkHttp should escape backslashes", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", "value with \\backslash"],
+    ],
+    jsonBody: { key: "value" },
+  };
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain('.addHeader("X-Custom", "value with \\\\backslash")');
+});
+
+test("Kotlin OkHttp should handle URL-encoded body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "application/x-www-form-urlencoded"]],
+    _urlEncodedBody: [
+      ["field1", "value1"],
+      ["field2", "value2"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain("import okhttp3.FormBody");
+  expect(output).toContain("FormBody.Builder()");
+  expect(output).toContain('.add("field1", "value1")');
+  expect(output).toContain('.add("field2", "value2")');
+});
+
+test("Kotlin OkHttp should handle multipart body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "multipart/form-data"]],
+    _multipartBody: [
+      ["file", "data"],
+      ["name", "test"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain("import okhttp3.MultipartBody");
+  expect(output).toContain("MultipartBody.Builder()");
+  expect(output).toContain('.addFormDataPart("file", "data")');
+  expect(output).toContain('.addFormDataPart("name", "test")');
+});
+
+test("Kotlin OkHttp should handle GET with no body", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [["Accept", "application/json"]],
+  };
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain(".get()");
+  expect(output).not.toContain("val body");
+  expect(output).not.toContain("val mediaType");
+});
+
+test("Kotlin OkHttp should handle raw body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "text/plain"]],
+    body: "raw body content",
+  };
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain('"raw body content".toRequestBody()');
+  expect(output).toContain(".post(body)");
+});
+
+test("Kotlin OkHttp should handle PUT method", () => {
+  const request = {
+    method: "PUT",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "application/json"]],
+    jsonBody: { key: "value" },
+  };
+  const output = CodeGenerator.convert(request, "kotlin-okhttp");
+  expect(output).toContain(".put(body)");
+});
+
+// --- PHP + Guzzle tests ---
+
+test("PHP Guzzle should work with POST + JSON body", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("use GuzzleHttp\\Client;");
+  expect(output).toContain("$client = new Client();");
+  expect(output).toContain("$client->request('POST', 'https://proxyman.io/get'");
+  expect(output).toContain("'query' => [");
+  expect(output).toContain("'data' => '123'");
+  expect(output).toContain("'json' => [");
+  expect(output).toContain("'Name' => 'Proxyman'");
+  expect(output).toContain("'Country' => 'Singapore'");
+});
+
+test("PHP Guzzle should escape single quotes in header values", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", "it's a test"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("'X-Custom' => 'it\\'s a test'");
+});
+
+test("PHP Guzzle should escape backslashes", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", "value with \\backslash"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("'X-Custom' => 'value with \\\\backslash'");
+});
+
+test("PHP Guzzle should handle URL-encoded body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "application/x-www-form-urlencoded"]],
+    _urlEncodedBody: [
+      ["field1", "value1"],
+      ["field2", "value2"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("'form_params' => [");
+  expect(output).toContain("'field1' => 'value1'");
+  expect(output).toContain("'field2' => 'value2'");
+});
+
+test("PHP Guzzle should handle multipart body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "multipart/form-data"]],
+    _multipartBody: [
+      ["file", "data"],
+      ["name", "test"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("'multipart' => [");
+  expect(output).toContain("'name' => 'file'");
+  expect(output).toContain("'contents' => 'data'");
+});
+
+test("PHP Guzzle should handle GET with no body", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [["Accept", "application/json"]],
+  };
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("$client->request('GET'");
+  expect(output).not.toContain("'json'");
+  expect(output).not.toContain("'body'");
+  expect(output).not.toContain("'form_params'");
+});
+
+test("PHP Guzzle should handle raw body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "text/plain"]],
+    body: "raw body content",
+  };
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("'body' => 'raw body content'");
+});
+
+test("PHP Guzzle should handle DELETE method", () => {
+  const request = {
+    method: "DELETE",
+    url: "https://example.com/api/123",
+    _headers: [["Authorization", "Bearer token"]],
+  };
+  const output = CodeGenerator.convert(request, "php-guzzle");
+  expect(output).toContain("$client->request('DELETE'");
+});
+
+// --- Rust + reqwest tests ---
+
+test("Rust reqwest should work with POST + JSON body", () => {
+  const request = requestFactory("PostWithJSONBody");
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain("use reqwest::blocking::Client;");
+  expect(output).toContain("use serde_json::json;");
+  expect(output).toContain("let client = Client::new();");
+  expect(output).toContain("let json_body = json!(");
+  expect(output).toContain('.post("https://proxyman.io/get?data=123")');
+  expect(output).toContain(".json(&json_body)");
+  expect(output).toContain('.header("Host", "proxyman.io")');
+});
+
+test("Rust reqwest should escape double quotes in values", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", 'value with "quotes"'],
+    ],
+    jsonBody: { key: 'value with "quotes"' },
+  };
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain('.header("X-Custom", "value with \\"quotes\\"")');
+  expect(output).toContain('"key": "value with \\"quotes\\""');
+});
+
+test("Rust reqwest should escape backslashes", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [
+      ["X-Custom", "value with \\backslash"],
+    ],
+    jsonBody: { key: "value" },
+  };
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain('.header("X-Custom", "value with \\\\backslash")');
+});
+
+test("Rust reqwest should handle URL-encoded body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "application/x-www-form-urlencoded"]],
+    _urlEncodedBody: [
+      ["field1", "value1"],
+      ["field2", "value2"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain("use std::collections::HashMap;");
+  expect(output).toContain("let mut params = HashMap::new();");
+  expect(output).toContain('params.insert("field1", "value1");');
+  expect(output).toContain(".form(&params)");
+});
+
+test("Rust reqwest should handle multipart body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "multipart/form-data"]],
+    _multipartBody: [
+      ["file", "data"],
+      ["name", "test"],
+    ],
+  };
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain("use reqwest::blocking::multipart;");
+  expect(output).toContain("let form = multipart::Form::new()");
+  expect(output).toContain('.text("file", "data")');
+  expect(output).toContain(".multipart(form)");
+});
+
+test("Rust reqwest should handle GET with no body", () => {
+  const request = {
+    method: "GET",
+    url: "https://example.com/api",
+    _headers: [["Accept", "application/json"]],
+  };
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain(".get(");
+  expect(output).not.toContain("json_body");
+  expect(output).not.toContain("HashMap");
+  expect(output).not.toContain("multipart");
+});
+
+test("Rust reqwest should handle raw body", () => {
+  const request = {
+    method: "POST",
+    url: "https://example.com/api",
+    _headers: [["Content-Type", "text/plain"]],
+    body: "raw body content",
+  };
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain('.body("raw body content")');
+});
+
+test("Rust reqwest should handle PATCH method", () => {
+  const request = {
+    method: "PATCH",
+    url: "https://example.com/api/123",
+    _headers: [["Content-Type", "application/json"]],
+    jsonBody: { key: "value" },
+  };
+  const output = CodeGenerator.convert(request, "rust-reqwest");
+  expect(output).toContain(".patch(");
+});
+
+// --- Postman Collection v2 fix tests ---
+
+test("PostmanCollection2 should handle XML body", () => {
+  const harContent = {
+    log: {
+      entries: [{
+        request: {
+          method: "POST",
+          url: "https://example.com/api",
+          headers: [{ name: "Content-Type", value: "application/xml" }],
+          queryString: [],
+          bodySize: 50,
+          postData: {
+            mimeType: "application/xml",
+            text: "<root><name>test</name></root>",
+          },
+        },
+        response: { status: 200 },
+      }],
+    },
+  };
+  const output = JSON.parse(
+    CodeGenerator.convert({ harString: JSON.stringify(harContent) }, "postmanCollection2")
+  );
+  const body = output.item[0].request.body;
+  expect(body.mode).toBe("raw");
+  expect(body.options.raw.language).toBe("xml");
+});
+
+test("PostmanCollection2 should handle form-urlencoded body", () => {
+  const harContent = {
+    log: {
+      entries: [{
+        request: {
+          method: "POST",
+          url: "https://example.com/api",
+          headers: [{ name: "Content-Type", value: "application/x-www-form-urlencoded" }],
+          queryString: [],
+          bodySize: 30,
+          postData: {
+            mimeType: "application/x-www-form-urlencoded",
+            text: "field1=value1&field2=value2",
+            params: [
+              { name: "field1", value: "value1" },
+              { name: "field2", value: "value2" },
+            ],
+          },
+        },
+        response: { status: 200 },
+      }],
+    },
+  };
+  const output = JSON.parse(
+    CodeGenerator.convert({ harString: JSON.stringify(harContent) }, "postmanCollection2")
+  );
+  const body = output.item[0].request.body;
+  expect(body.mode).toBe("urlencoded");
+  expect(body.urlencoded).toEqual([
+    { key: "field1", value: "value1" },
+    { key: "field2", value: "value2" },
+  ]);
+});
+
+test("PostmanCollection2 should handle text/plain body", () => {
+  const harContent = {
+    log: {
+      entries: [{
+        request: {
+          method: "POST",
+          url: "https://example.com/api",
+          headers: [{ name: "Content-Type", value: "text/plain" }],
+          queryString: [],
+          bodySize: 10,
+          postData: {
+            mimeType: "text/plain",
+            text: "hello world",
+          },
+        },
+        response: { status: 200 },
+      }],
+    },
+  };
+  const output = JSON.parse(
+    CodeGenerator.convert({ harString: JSON.stringify(harContent) }, "postmanCollection2")
+  );
+  const body = output.item[0].request.body;
+  expect(body.mode).toBe("raw");
+  expect(body.options.raw.language).toBe("text");
+});
+
+test("PostmanCollection2 should have no body field when bodySize is 0", () => {
+  const harContent = {
+    log: {
+      entries: [{
+        request: {
+          method: "GET",
+          url: "https://example.com/api",
+          headers: [],
+          queryString: [],
+          bodySize: 0,
+        },
+        response: { status: 200 },
+      }],
+    },
+  };
+  const output = JSON.parse(
+    CodeGenerator.convert({ harString: JSON.stringify(harContent) }, "postmanCollection2")
+  );
+  expect(output.item[0].request.body).toBeUndefined();
+});
+
+test("PostmanCollection2 should not corrupt special chars in headers", () => {
+  const harContent = {
+    log: {
+      entries: [{
+        request: {
+          method: "GET",
+          url: "https://example.com/api",
+          headers: [
+            { name: "Authorization", value: "Bearer abc\"def\\ghi" },
+            { name: "Accept", value: "application/json" },
+          ],
+          queryString: [],
+          bodySize: 0,
+        },
+        response: { status: 200 },
+      }],
+    },
+  };
+  const output = JSON.parse(
+    CodeGenerator.convert({ harString: JSON.stringify(harContent) }, "postmanCollection2")
+  );
+  const headers = output.item[0].request.header;
+  const authHeader = headers.find((h) => h.key === "Authorization");
+  expect(authHeader.value).toBe('Bearer abc"def\\ghi');
 });
